@@ -68,9 +68,8 @@ regressed to `unknown` the app would still run, and every consumer would quietly
 - Models hang off the namespace: `db.orm.public.Tenant`. Writes are `create(data)`; reads are `all()`
   and `first()`, filtered with `.where(m => m.field.eq(value))`.
 
-## The library is not published yet
+## The library
 
-`package.json` already declares the real dependency (`prisma-next-zod-json: ^0.1.0`) but a
-`pnpm.overrides` block links a sibling checkout, since the package is not yet on npm. Once it is
-published, delete that block and run `pnpm install`; the CI step that checks out and builds the library
-can go at the same time.
+[`prisma-next-zod-json`](https://www.npmjs.com/package/prisma-next-zod-json) is on npm; this app
+depends on the published package like any other consumer, which is the point — it is a check that the
+package works from the registry and not merely in its own test suite.

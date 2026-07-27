@@ -41,11 +41,5 @@
     "tsx": "^4.20.0",
     "typescript": "5.9.3",
     "vitest": "4.1.10"
-  },
-  "//": "prisma-next-zod-json is not on npm yet, so it is linked from a sibling checkout. Once it is published, delete the `pnpm.overrides` block below and run `pnpm install` — the dependency range above is already the real one.",
-  "pnpm": {
-    "overrides": {
-      "prisma-next-zod-json": "link:../prisma-next-zod-json"
-    }
   }
 }

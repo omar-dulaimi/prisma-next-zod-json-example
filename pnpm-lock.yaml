@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  prisma-next-zod-json: link:../prisma-next-zod-json
-
 importers:
 
   .:
@@ -51,8 +48,8 @@ importers:
         specifier: 0.16.0
         version: 0.16.0(typanion@3.14.0)(typescript@5.9.3)
       prisma-next-zod-json:
-        specifier: link:../prisma-next-zod-json
-        version: link:../prisma-next-zod-json
+        specifier: ^0.1.0
+        version: 0.1.0(@prisma-next/contract-authoring@0.16.0(typescript@5.9.3))(@prisma-next/contract@0.16.0(typescript@5.9.3))(@prisma-next/family-sql@0.16.0(typescript@5.9.3))(@prisma-next/framework-components@0.16.0(typescript@5.9.3))(@prisma-next/sql-relational-core@0.16.0(typescript@5.9.3))(@prisma-next/sql-runtime@0.16.0(typescript@5.9.3))(zod@4.4.3)
       zod:
         specifier: 4.4.3
         version: 4.4.3
@@ -1028,6 +1025,18 @@ packages:
     resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
+
+  prisma-next-zod-json@0.1.0:
+    resolution: {integrity: sha512-f1p3kBBMJrGnvlto+vzkOcZulzoE4HUGVrapqA/hhKpWSU3Z6N83gzlorzPT7jHHxZSe9m0v2WFCPY/fpqdNfw==}
+    engines: {node: '>=24'}
+    peerDependencies:
+      '@prisma-next/contract': ^0.16.0
+      '@prisma-next/contract-authoring': ^0.16.0
+      '@prisma-next/family-sql': ^0.16.0
+      '@prisma-next/framework-components': ^0.16.0
+      '@prisma-next/sql-relational-core': ^0.16.0
+      '@prisma-next/sql-runtime': ^0.16.0
+      zod: ^4.1.0
 
   prisma-next@0.16.0:
     resolution: {integrity: sha512-l7JuIcDJjX+ii8qif03O4pmLwy1kdMrz9x6TlvbITgxYDT9w6bV171CILTFN/JiPfBTOI1EX9SC6Ir80U2yBJA==}
@@ -2155,6 +2164,17 @@ snapshots:
       xtend: 4.0.2
 
   prettier@3.9.6: {}
+
+  prisma-next-zod-json@0.1.0(@prisma-next/contract-authoring@0.16.0(typescript@5.9.3))(@prisma-next/contract@0.16.0(typescript@5.9.3))(@prisma-next/family-sql@0.16.0(typescript@5.9.3))(@prisma-next/framework-components@0.16.0(typescript@5.9.3))(@prisma-next/sql-relational-core@0.16.0(typescript@5.9.3))(@prisma-next/sql-runtime@0.16.0(typescript@5.9.3))(zod@4.4.3):
+    dependencies:
+      '@prisma-next/contract': 0.16.0(typescript@5.9.3)
+      '@prisma-next/contract-authoring': 0.16.0(typescript@5.9.3)
+      '@prisma-next/family-sql': 0.16.0(typescript@5.9.3)
+      '@prisma-next/framework-components': 0.16.0(typescript@5.9.3)
+      '@prisma-next/sql-relational-core': 0.16.0(typescript@5.9.3)
+      '@prisma-next/sql-runtime': 0.16.0(typescript@5.9.3)
+      '@standard-schema/spec': 1.1.0
+      zod: 4.4.3
 
   prisma-next@0.16.0(typanion@3.14.0)(typescript@5.9.3):
     dependencies:

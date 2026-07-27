@@ -34,21 +34,7 @@ jobs:
       DATABASE_URL: postgresql://postgres:pg@localhost:55435/events
 
     steps:
-      # Checked out as siblings under the workspace, because package.json links the library at
-      # `../prisma-next-zod-json` and actions/checkout cannot write outside the workspace.
-      - name: Check out this app
-        uses: actions/checkout@v5
-        with:
-          path: prisma-next-zod-json-example
-
-      # Needed only until the library is published to npm. LIB_REPO_TOKEN must be a PAT with read
-      # access to the library repo — the default GITHUB_TOKEN cannot read a different private repo.
-      - name: Check out the library it links to
-        uses: actions/checkout@v5
-        with:
-          repository: omar-dulaimi/prisma-next-zod-json
-          path: prisma-next-zod-json
-          token: ${{ secrets.LIB_REPO_TOKEN }}
+      - uses: actions/checkout@v5
 
       - uses: pnpm/action-setup@v4
         with:
@@ -57,27 +43,18 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '24.x'
-
-      - name: Build the library
-        working-directory: prisma-next-zod-json
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+          cache: pnpm
 
       - name: Install
-        working-directory: prisma-next-zod-json-example
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Typecheck
-        working-directory: prisma-next-zod-json-example
         run: pnpm typecheck
 
       - name: Emit the contract
-        working-directory: prisma-next-zod-json-example
         run: pnpm emit
 
       - name: The emitted types must be real, not `unknown`
-        working-directory: prisma-next-zod-json-example
         # The whole point of a typed JSON column. If this regressed the app would still run, and every
         # consumer of the generated types would quietly lose them.
         run: |
@@ -87,13 +64,10 @@ jobs:
           echo "contract.d.ts carries the real shapes"
 
       - name: Create the database
-        working-directory: prisma-next-zod-json-example
         run: pnpm db:init
 
       - name: Integration tests
-        working-directory: prisma-next-zod-json-example
         run: pnpm test
 
       - name: Guided tour
-        working-directory: prisma-next-zod-json-example
         run: pnpm tour
