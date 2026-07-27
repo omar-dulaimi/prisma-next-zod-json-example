@@ -1,0 +1,51 @@
+{
+  "name": "prisma-next-zod-json-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Reference app for prisma-next-zod-json: typed JSON columns validated by zod, on Prisma Next + Postgres.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down -v",
+    "emit": "prisma-next contract emit",
+    "db:init": "prisma-next db init",
+    "setup": "pnpm db:up && pnpm emit && pnpm db:init",
+    "seed": "tsx src/seed.ts",
+    "start": "tsx src/server.ts",
+    "tour": "tsx src/tour.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.0",
+    "@prisma-next/adapter-postgres": "0.16.0",
+    "@prisma-next/contract": "0.16.0",
+    "@prisma-next/contract-authoring": "0.16.0",
+    "@prisma-next/family-sql": "0.16.0",
+    "@prisma-next/framework-components": "0.16.0",
+    "@prisma-next/postgres": "0.16.0",
+    "@prisma-next/sql-contract": "0.16.0",
+    "@prisma-next/sql-relational-core": "0.16.0",
+    "@prisma-next/sql-runtime": "0.16.0",
+    "dotenv": "^17.0.0",
+    "hono": "^4.6.0",
+    "prisma-next": "0.16.0",
+    "prisma-next-zod-json": "^0.1.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.0",
+    "tsx": "^4.20.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  },
+  "//": "prisma-next-zod-json is not on npm yet, so it is linked from a sibling checkout. Once it is published, delete the `pnpm.overrides` block below and run `pnpm install` — the dependency range above is already the real one.",
+  "pnpm": {
+    "overrides": {
+      "prisma-next-zod-json": "link:../prisma-next-zod-json"
+    }
+  }
+}
