@@ -4,7 +4,7 @@ import { client, db } from '../src/db.js';
 /**
  * Integration tests against a real database, from the consumer's side.
  *
- * The library has its own suite; these check the thing an application actually cares about — that a
+ * The library has its own suite; these check the thing an application actually cares about: that a
  * bad payload cannot be written, and that a good one survives the round trip with its shape.
  */
 

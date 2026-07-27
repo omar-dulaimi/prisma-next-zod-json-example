@@ -8,13 +8,13 @@ import { z } from 'zod';
  * separate validation of its own.
  *
  * Every constraint used here survives serialisation to JSON Schema and back. `prisma-next-zod-json`
- * refuses anything that would not — so if this file compiles and `contract emit` succeeds, the rules
+ * refuses anything that would not, so if this file compiles and `contract emit` succeeds, the rules
  * below are the rules the database applies.
  */
 
 /**
  * A webhook payload. Each event kind carries a different shape, which is exactly the case JSON columns
- * exist for — the alternative is a dozen mostly-null columns.
+ * exist for: the alternative is a dozen mostly-null columns.
  *
  * A discriminated union round-trips intact, and renders in `contract.d.ts` as a real TypeScript union,
  * so narrowing on `kind` works downstream.
@@ -43,7 +43,7 @@ export const WebhookPayload = z.discriminatedUnion('kind', [
  * Per-tenant configuration. Nested, partly optional, and genuinely document-shaped.
  *
  * `strictObject` rather than `object`: zod's default strips unknown keys, and JSON Schema has no way to
- * express "strip" — only allow or forbid. Being explicit means the column behaves identically whether
+ * express "strip", only allow or forbid. Being explicit means the column behaves identically whether
  * a value is checked in application code or by the database.
  */
 export const TenantSettings = z.strictObject({

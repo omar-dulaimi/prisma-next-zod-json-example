@@ -6,7 +6,7 @@ import { TenantSettings, WebhookPayload } from './schemas.ts';
 export const contract = defineContract(
   {},
   ({ field, model }) => ({
-    // The contract plane. Note this belongs in the object the callback returns, beside `models` —
+    // The contract plane. Note this belongs in the object the callback returns, beside `models`,
     // `defineConfig` accepts an `extensionPacks` key and quietly ignores it.
     extensionPacks: {
       zodJson: zodJsonPack,

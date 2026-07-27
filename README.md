@@ -7,9 +7,9 @@ columns doing real work.
 Two columns carry documents rather than scalars, and both are genuine cases for JSON rather than lazy
 ones:
 
-- `WebhookEvent.payload` — a **discriminated union**. Each event kind has a different shape; the
+- `WebhookEvent.payload`: a **discriminated union**. Each event kind has a different shape; the
   alternative is a dozen mostly-null columns.
-- `Tenant.settings` — nested per-tenant configuration, partly optional.
+- `Tenant.settings`, nested per-tenant configuration, partly optional.
 
 Both are declared once, in `src/prisma/schemas.ts`, as ordinary zod schemas.
 
@@ -26,16 +26,16 @@ pnpm seed && pnpm start
 
 ```
 2. Invalid writes are rejected before they reach the table
-  ⨯ an unknown event kind — kind — Invalid input: expected "payment.succeeded"
-  ⨯ a negative amount — amountCents — Too small: expected number to be >0
-  ⨯ an unsupported currency — currency — Invalid option: expected one of "gbp"|"usd"|"eur"
-  ⨯ a malformed email — email — Invalid email address
-  ✓ 1 event for this tenant — none of the six rejections landed
+  ⨯ an unknown event kind (kind) Invalid input: expected "payment.succeeded"
+  ⨯ a negative amount (amountCents) Too small: expected number to be >0
+  ⨯ an unsupported currency (currency) Invalid option: expected one of "gbp"|"usd"|"eur"
+  ⨯ a malformed email (email) Invalid email address
+  ✓ 1 event for this tenant, none of the six rejections landed
 ```
 
 The HTTP handlers in `src/server.ts` do **no validation of their own**. They pass the parsed request
 body straight to the database and turn a codec rejection into a 422. That is only safe because the
-column validates on write — with read-only validation the row would commit and fail later, in someone
+column validates on write, with read-only validation the row would commit and fail later, in someone
 else's request.
 
 ## The types are real
@@ -60,7 +60,7 @@ regressed to `unknown` the app would still run, and every consumer would quietly
   `extensionPacks` in the object the `defineContract` callback returns (`src/prisma/contract.ts`),
   `extensions` in `prisma-next.config.ts` for DDL, and `extensions` on the runtime client
   (`src/db.ts`).
-- **A relative import inside `contract.ts` needs its explicit `.ts` extension** — the contract loader
+- **A relative import inside `contract.ts` needs its explicit `.ts` extension**: the contract loader
   resolves neither `./schemas` nor `./schemas.js`. That needs `allowImportingTsExtensions` in
   `tsconfig.json`.
 - `TenantSettings` uses `strictObject`. Zod's default object strips unknown keys and JSON Schema cannot
@@ -71,5 +71,5 @@ regressed to `unknown` the app would still run, and every consumer would quietly
 ## The library
 
 [`prisma-next-zod-json`](https://www.npmjs.com/package/prisma-next-zod-json) is on npm; this app
-depends on the published package like any other consumer, which is the point — it is a check that the
-package works from the registry and not merely in its own test suite.
+depends on the published package like any other consumer. That is the point: it checks the package
+works from the registry, not merely in its own test suite.

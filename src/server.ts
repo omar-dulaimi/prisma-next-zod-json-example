@@ -7,7 +7,7 @@ import { db } from './db.js';
  *
  * The point of the example: these handlers do **no validation of their own**. They pass the parsed
  * request body straight to the database. The `payload` and `settings` columns are typed JSON, so the
- * codec validates on write and rejects anything that does not match the zod schema — naming the field
+ * codec validates on write and rejects anything that does not match the zod schema, naming the field
  * that was wrong.
  *
  * Without write validation this would be reckless: the row would commit and blow up later on read, in

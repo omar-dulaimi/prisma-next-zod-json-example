@@ -50,11 +50,11 @@ const rejections: [label: string, payload: unknown][] = [
 for (const [label, payload] of rejections) {
   try {
     await db.WebhookEvent.create({ tenantSlug: slug, payload });
-    console.log(`  \x1b[31m!\x1b[0m ${label} — ACCEPTED, which it should not have been`);
+    console.log(`  \x1b[31m!\x1b[0m ${label}, ACCEPTED, which it should not have been`);
   } catch (error) {
     // "…failed (encode): <detail>" or "…failed (encode) at `field`: <detail>" when zod knows the path.
     const [, detail = ''] = /\(encode\)(?: at `[^`]*`)?: (.*)$/s.exec((error as Error).message) ?? [];
-    blocked(`${label} — ${detail.split(';')[0]!.trim().slice(0, 76)}`);
+    blocked(`${label}, ${detail.split(';')[0]!.trim().slice(0, 76)}`);
   }
 }
 
@@ -62,7 +62,7 @@ for (const [label, payload] of rejections) {
 const stored = await db.WebhookEvent.where((m: Record<string, { eq(v: unknown): unknown }>) =>
   m['tenantSlug']!.eq(slug),
 ).all();
-ok(`${stored.length} event for this tenant — none of the six rejections landed`);
+ok(`${stored.length} event for this tenant, none of the six rejections landed`);
 
 heading('3. Reads come back typed and narrowable');
 
@@ -85,9 +85,9 @@ const wouldBeSilentlyLost: [label: string, build: () => unknown][] = [
 for (const [label, build] of wouldBeSilentlyLost) {
   try {
     build();
-    console.log(`  \x1b[31m!\x1b[0m ${label} — ACCEPTED, so the constraint would vanish unnoticed`);
+    console.log(`  \x1b[31m!\x1b[0m ${label}, ACCEPTED, so the constraint would vanish unnoticed`);
   } catch (error) {
-    blocked(`${label} — refused at authoring time`);
+    blocked(`${label}, refused at authoring time`);
   }
 }
 
