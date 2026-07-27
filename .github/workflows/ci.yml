@@ -48,11 +48,12 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Typecheck
-        run: pnpm typecheck
-
+      # Before typecheck: src/db.ts imports the generated contract.json, which is not committed.
       - name: Emit the contract
         run: pnpm emit
+
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: The emitted types must be real, not `unknown`
         # The whole point of a typed JSON column. If this regressed the app would still run, and every
