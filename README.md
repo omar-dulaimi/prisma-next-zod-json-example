@@ -40,7 +40,7 @@ else's request.
 
 ## The types are real
 
-`prisma-next contract emit` renders the column's TypeScript type from the stored schema, so
+`prisma contract emit` renders the column's TypeScript type from the stored schema, so
 `contract.d.ts` contains:
 
 ```ts
@@ -58,7 +58,7 @@ regressed to `unknown` the app would still run, and every consumer would quietly
 - The column goes in as `field.column(zodJson(Schema))`.
 - Registration happens in three places, and each failure is loud and specific:
   `extensionPacks` in the object the `defineContract` callback returns (`src/prisma/contract.ts`),
-  `extensions` in `prisma-next.config.ts` for DDL, and `extensions` on the runtime client
+  `extensions` in `prisma.config.ts` for DDL, and `extensions` on the runtime client
   (`src/db.ts`).
 - **A relative import inside `contract.ts` needs its explicit `.ts` extension**: the contract loader
   resolves neither `./schemas` nor `./schemas.js`. That needs `allowImportingTsExtensions` in
