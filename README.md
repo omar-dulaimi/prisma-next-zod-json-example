@@ -74,5 +74,5 @@ regressed to `unknown` the app would still run, and every consumer would quietly
 npm; this app depends on the published package like any other consumer. That is the point: it checks
 the package works from the registry, not merely in its own test suite.
 
-The dependency is pinned exactly (`8.0.0-rc.4`, no caret). The extension's versions mirror the Prisma
+The dependency is pinned exactly (`8.0.0-rc.5`, no caret). The extension's versions mirror the Prisma
 release they target, and a caret on a prerelease would float onto later release candidates.
