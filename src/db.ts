@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import postgres from '@prisma/orm-postgres/runtime';
-import { zodJsonRuntimeDescriptor } from 'prisma-next-zod-json/runtime';
+import { zodJsonRuntimeDescriptor } from 'prisma-orm-extension-zod-json/runtime';
 import contractJson from './prisma/contract.json' with { type: 'json' };
 
 /**

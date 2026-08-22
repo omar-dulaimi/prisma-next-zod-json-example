@@ -1,8 +1,8 @@
-# prisma-next-zod-json-example
+# prisma-orm-extension-zod-json-example
 
-A small webhook receiver built on [Prisma Next](https://github.com/prisma/prisma-next) and
-[`prisma-next-zod-json`](https://github.com/omar-dulaimi/prisma-next-zod-json), showing typed JSON
-columns doing real work.
+A small webhook receiver built on [Prisma 8](https://www.prisma.io/docs/orm/v8) and
+[`prisma-orm-extension-zod-json`](https://github.com/omar-dulaimi/prisma-orm-extension-zod-json),
+showing typed JSON columns doing real work.
 
 Two columns carry documents rather than scalars, and both are genuine cases for JSON rather than lazy
 ones:
@@ -70,6 +70,9 @@ regressed to `unknown` the app would still run, and every consumer would quietly
 
 ## The library
 
-[`prisma-next-zod-json`](https://www.npmjs.com/package/prisma-next-zod-json) is on npm; this app
-depends on the published package like any other consumer. That is the point: it checks the package
-works from the registry, not merely in its own test suite.
+[`prisma-orm-extension-zod-json`](https://www.npmjs.com/package/prisma-orm-extension-zod-json) is on
+npm; this app depends on the published package like any other consumer. That is the point: it checks
+the package works from the registry, not merely in its own test suite.
+
+The dependency is pinned exactly (`8.0.0-rc.4`, no caret). The extension's versions mirror the Prisma
+release they target, and a caret on a prerelease would float onto later release candidates.

@@ -1,6 +1,6 @@
 import { defineContract } from '@prisma/orm-postgres/contract-builder';
-import { zodJson } from 'prisma-next-zod-json/column-types';
-import zodJsonPack from 'prisma-next-zod-json/pack';
+import { zodJson } from 'prisma-orm-extension-zod-json/column-types';
+import zodJsonPack from 'prisma-orm-extension-zod-json/pack';
 import { TenantSettings, WebhookPayload } from './schemas.ts';
 
 export const contract = defineContract(
