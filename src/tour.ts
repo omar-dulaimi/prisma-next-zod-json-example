@@ -1,5 +1,5 @@
 import { client, db } from './db.js';
-import { zodJson } from 'prisma-next-zod-json/column-types';
+import { zodJson } from 'prisma-orm-extension-zod-json/column-types';
 import { z } from 'zod';
 
 /**

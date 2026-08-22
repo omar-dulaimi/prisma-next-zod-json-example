@@ -7,9 +7,9 @@ import { z } from 'zod';
  * enforces them on write, the emitted contract types read from them, and the HTTP layer needs no
  * separate validation of its own.
  *
- * Every constraint used here survives serialisation to JSON Schema and back. `prisma-next-zod-json`
- * refuses anything that would not, so if this file compiles and `contract emit` succeeds, the rules
- * below are the rules the database applies.
+ * Every constraint used here survives serialisation to JSON Schema and back.
+ * `prisma-orm-extension-zod-json` refuses anything that would not, so if this file compiles and
+ * `contract emit` succeeds, the rules below are the rules the database applies.
  */
 
 /**
