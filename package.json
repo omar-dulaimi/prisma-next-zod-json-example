@@ -22,11 +22,11 @@
   "dependencies": {
     "@hono/node-server": "^1.13.0",
     "@prisma/cli-engine": "0.2.0",
-    "@prisma/orm-postgres": "8.0.0-rc.4",
+    "@prisma/orm-postgres": "8.0.0-rc.5",
     "dotenv": "^17.0.0",
     "hono": "^4.6.0",
     "prisma": "8.0.0-rc.7",
-    "prisma-orm-extension-zod-json": "8.0.0-rc.4",
+    "prisma-orm-extension-zod-json": "8.0.0-rc.5",
     "zod": "4.4.3"
   },
   "devDependencies": {
